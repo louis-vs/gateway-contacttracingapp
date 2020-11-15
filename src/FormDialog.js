@@ -5,7 +5,7 @@ import Dialog from '@material-ui/core/Dialog';
 function FormDialog(props) {
   return (<div>
     <Dialog open={props.open} onClose={props.onClose} aria-labelledby="form-dialog-title">
-      {props.children}
+        {props.children}
     </Dialog>
   </div>);
 }
