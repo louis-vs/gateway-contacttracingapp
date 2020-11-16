@@ -6,29 +6,29 @@ import FormLogIn from './FormLogIn';
 
 
 export function LogInButton () {
-    const [showLogIn, setLogIn] = useState(false);
+  const [showLogIn, setLogIn] = useState(false);
 
   // event handlers
-    const handleLogInOpen = () => { setLogIn(true); }
+  const handleLogInOpen = () => { setLogIn(true); }
 
-    const handleDialogClose = () => {
-        setLogIn(false);
-    };
+  const handleDialogClose = () => {
+    setLogIn(false);
+  };
 
-    return (
-        <>
-            <Link to='sign=up'>
-                <button className='btn' onClick={handleLogInOpen}>
-                Log In
-                </button>
+  return (
+    <>
+      <Link to='sign=up'>
+        <button className='btn' onClick={handleLogInOpen}>
+        Log In
+        </button>
 
 
-                <FormDialog open={showLogIn} onClose={handleDialogClose}>
-                    <FormLogIn onClose={handleDialogClose}></FormLogIn>
-                </FormDialog>
+        <FormDialog open={showLogIn} onClose={handleDialogClose}>
+          <FormLogIn onClose={handleDialogClose}></FormLogIn>
+        </FormDialog>
 
-            </Link>
-        </>      
-    );
+      </Link>
+    </>      
+  );
 }
 
