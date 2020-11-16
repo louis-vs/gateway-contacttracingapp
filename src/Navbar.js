@@ -1,10 +1,13 @@
 import React, {useState} from 'react';
 import './Navbar.css';
-import { Button } from './components/Button'
+import { LogInButton } from './components/LogInButton'
+import { SignUpButton } from './components/SignUpButton'
 import Dropdown from './components/Dropdown'
 import { Link } from 'react-router-dom';
 
+
 function Navbar() {
+  
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -63,10 +66,13 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        <Button />
+        <LogInButton />
+        <SignUpButton />
+        
+
       </nav>
     </>
   );
-}
+};
 
 export default Navbar;

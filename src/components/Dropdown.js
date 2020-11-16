@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button } from './Button'
+import { LogInButton } from './LogInButton'
 import { Link } from 'react-router-dom';
 import { MenuItems } from './MenuItems'
 import './Dropdown.css'
