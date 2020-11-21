@@ -8,7 +8,9 @@ export function SignUpButton () {
 	const [showSignUp, setSignUp] = useState(false);
 
   // event handlers
-	const handleSignUpOpen = () => { setSignUp(true); }
+	const handleDialogOpen = () => { 
+		setSignUp(true); 
+	};
 
 	const handleDialogClose = () => {
 		setSignUp(false);
@@ -16,16 +18,13 @@ export function SignUpButton () {
 
 	return (
 		<>
-			<Link to='sign=up'>
-				<button className='btn' onClick={handleSignUpOpen}>
-				Sign Up
-				</button>
+			<button className='btn' onClick={handleDialogOpen}>
+			Sign Up
+			</button>
 
-				<FormDialog open={showSignUp} onClose={handleDialogClose}>
-					<FormSignUp onClose={handleDialogClose}></FormSignUp>
-				</FormDialog>
-
-			</Link>
+			<FormDialog open={showSignUp} onClose={handleDialogClose}>
+				<FormSignUp onClose={handleDialogClose}></FormSignUp>
+			</FormDialog>
 		</>      
 	);
 }

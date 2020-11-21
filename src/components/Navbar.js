@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import './Navbar.css';
-import { LogInButton } from './components/LogInButton'
-import { SignUpButton } from './components/SignUpButton'
-import Dropdown from './components/Dropdown'
+import { LogInButton } from './LogInButton'
+import { SignUpButton } from './SignUpButton'
+import Dropdown from './Dropdown'
 import { Link } from 'react-router-dom';
 
 

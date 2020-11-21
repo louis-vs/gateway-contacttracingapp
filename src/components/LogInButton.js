@@ -9,7 +9,9 @@ export function LogInButton () {
   const [showLogIn, setLogIn] = useState(false);
 
   // event handlers
-  const handleLogInOpen = () => { setLogIn(true); }
+  const handleDialogOpen = () => { 
+    setLogIn(true); 
+  };
 
   const handleDialogClose = () => {
     setLogIn(false);
@@ -17,17 +19,14 @@ export function LogInButton () {
 
   return (
     <>
-      <Link to='sign=up'>
-        <button className='btn' onClick={handleLogInOpen}>
+      <button className='btn' onClick={handleDialogOpen}>
         Log In
-        </button>
+      </button>
 
 
-        <FormDialog open={showLogIn} onClose={handleDialogClose}>
-          <FormLogIn onClose={handleDialogClose}></FormLogIn>
-        </FormDialog>
-
-      </Link>
+      <FormDialog open={showLogIn} onClose={handleDialogClose}>
+        <FormLogIn onClose={handleDialogClose}></FormLogIn>
+      </FormDialog>
     </>      
   );
 }
