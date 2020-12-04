@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import './Navbar.css';
-import { LogInButton } from './LogInButton'
-import { SignUpButton } from './SignUpButton'
-import Dropdown from './Dropdown'
+import LogInButton from './LogInButton';
+import SignUpButton from './SignUpButton';
+import LogOutButton from './LogOutButton';
+import Dropdown from './Dropdown';
 import { Link } from 'react-router-dom';
-
+import { useAuth } from '../contexts/AuthContext';
 
 function Navbar() {
-  
+  const { currentUser } = useAuth();
+  console.dir(currentUser);
+
   const [click, setClick] = useState(false);
   const [dropdown, setDropdown] = useState(false);
 
@@ -60,14 +63,17 @@ function Navbar() {
               Contact Us
             </Link>
           </li>
-          <li className='nav-item'>
-            <Link to='/sign-up' className='nav-links-mobile' onClick={closeMobileMenu}>
-              Sign Up
-            </Link>
-          </li>
         </ul>
-        <LogInButton />
-        <SignUpButton />
+        { currentUser ? 
+          <>
+            <LogOutButton />
+          </>
+          : 
+          <>
+            <LogInButton />
+            <SignUpButton />
+          </>
+        }
         
 
       </nav>

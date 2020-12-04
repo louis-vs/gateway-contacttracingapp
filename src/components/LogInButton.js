@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
 import './Button.css';
-import { Link } from 'react-router-dom';
 import FormDialog from './FormDialog';
 import FormLogIn from './FormLogIn';
 
 
-export function LogInButton () {
+function LogInButton () {
   const [showLogIn, setLogIn] = useState(false);
 
   // event handlers
@@ -31,3 +30,4 @@ export function LogInButton () {
   );
 }
 
+export default LogInButton;

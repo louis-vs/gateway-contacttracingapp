@@ -5,12 +5,18 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useAuth } from '../contexts/AuthContext';
 
 // log in form content. Place within FormDialog
 function FormLogIn(props) {
+  // authentication
+  const { logIn } = useAuth();
+
   // state
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
+  const [ error, setError ] = useState("");
+  const [ loading, setLoading ] = useState(false);
 
   // event handlers
   const handleChange = (event) => {
@@ -21,13 +27,22 @@ function FormLogIn(props) {
     }
   }
 
-  const handleSubmit = (event) => {
-    // TODO: add client-side validation
-    // TODO: add POST request.then(redirect as needed). This requires router & firebase set up.
-    console.log("trying log in...");
-    console.log("email: " + email);
-    console.log("pw: " + password);
+  const handleSubmit = async (event) => {
     event.preventDefault(); // stop browser from auto-redirecting
+
+    // TODO: add client-side validation
+
+    
+    try {
+      setLoading(true);
+      setError("");
+      await logIn(email, password);
+    } catch {
+      setError("Failed to log in.");
+    }
+
+    setLoading(false);
+
   }
 
   // render
@@ -56,13 +71,13 @@ function FormLogIn(props) {
           onChange={handleChange}
           required
         />
-
+        { error && <DialogContentText>{error}</DialogContentText> }
       </DialogContent>
       <DialogActions>
         <Button onClick={props.onClose}>
           Cancel
         </Button>
-        <Button type="submit">
+        <Button type="submit" disabled={loading}>
           Log In
         </Button>
       </DialogActions>

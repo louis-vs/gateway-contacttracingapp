@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
 import './Button.css';
-import { Link } from 'react-router-dom';
 import FormDialog from './FormDialog';
 import FormSignUp from './FormSignUp';
 
-export function SignUpButton () {
+function SignUpButton () {
 	const [showSignUp, setSignUp] = useState(false);
 
   // event handlers
@@ -29,3 +28,4 @@ export function SignUpButton () {
 	);
 }
 
+export default SignUpButton;

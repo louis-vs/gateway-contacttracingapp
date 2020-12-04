@@ -1,22 +1,26 @@
 import React from 'react';
 import './App.css';
 import Navbar from './Navbar';
-import Meeting from './Meeting';
+import Home from './Home';
+import { AuthProvider } from "../contexts/AuthContext"
 
-import { BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 
 function App() {
-
   // render
   return (
     <Router>
-      <div className="App">
-        <Navbar />
-        <Meeting />
+      <AuthProvider>
+        <div className="App">
+          <Navbar />
+          <Switch>
+            <Home />
+            <Route exact path="/" component={Home} />
 
-        <h3>Hackbridge Gateway - Contact Tracing App</h3>
-        
-      </div>
+            
+          </Switch>
+        </div>
+      </AuthProvider>
     </Router>
   );
 }

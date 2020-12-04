@@ -5,13 +5,19 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogActions from '@material-ui/core/DialogActions';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { useAuth } from '../contexts/AuthContext';
 
 // sign up form content. Place within FormDialog
 function FormSignUp(props) {
+  // authentication
+  const { signUp } = useAuth();
+
   // state
   const [ email, setEmail ] = useState("");
   const [ password, setPassword ] = useState("");
   const [ passwordConfirmation, setPasswordConfirmation ] = useState("");
+  const [ error, setError ] = useState("");
+  const [ loading, setLoading ] = useState(false);
 
   // events
   const handleChange = (event) => {
@@ -23,14 +29,24 @@ function FormSignUp(props) {
     }
   }
 
-  const handleSubmit = (event) => {
-    // TODO: add client-side validation
-    // TODO: add POST request.then(redirect as needed). This requires router & firebase set up.
-    console.log("trying sign up...");
-    console.log("email: " + email);
-    console.log("pw: " + password);
-    console.log("pwC: " + passwordConfirmation);
+  const handleSubmit = async (event) => {
     event.preventDefault(); // stop browser from auto-redirecting
+    
+    // TODO: add more client-side validation
+    if(password !== passwordConfirmation) {
+      return setError("Passwords do not match!");
+    }
+
+    try {
+      setLoading(true);
+      setError("");
+      await signUp(email, password);
+    } catch {
+      setError("Failed to create account.");
+    }
+    // TODO: close popup & reload on success
+
+    setLoading(false);
   }
 
   // render
@@ -67,6 +83,8 @@ function FormSignUp(props) {
           value={passwordConfirmation}
           onChange={handleChange}
           required
+          error={error}
+          helperText={error}
         />
 
       </DialogContent>
@@ -74,7 +92,7 @@ function FormSignUp(props) {
         <Button onClick={props.onClose}>
           Cancel
         </Button>
-        <Button type="submit">
+        <Button type="submit" disabled={loading}>
           Sign Up
         </Button>
       </DialogActions>
